@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+{% block title %}Enviar post{% endblock %}
+{% block content %}
+    {% if sent %}
+        <h1>Email Enviado</h1>
+        <p>
+            {{ post.title }}" Ha sido enviado a {{ form.cleaned_data.to }}.
+        </p>
+    {% else %}
+        <h1>Enviar "{{ post.title }}"por email</h1>
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Enviar">
+        </form>
+    {% endif %}
+{% endblock %}
+
